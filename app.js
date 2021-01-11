@@ -2,8 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-const Thing = require('./models/thing');
-
 const userRoutes = require('./routes/user');
 
 mongoose.connect('mongodb+srv://user-dehaut:LJbaz59MCP63ZndD@cluster0.8qplx.mongodb.net/<dbname>?retryWrites=true&w=majority', {
@@ -24,7 +22,6 @@ app.use((req, res, next) => {
 });
 
 app.use(bodyParser.json());
-
 
 app.use('/api/auth/', userRoutes);
 
