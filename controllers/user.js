@@ -32,7 +32,7 @@ exports.signup = (req, res, next) => {
               userId: user._id,
               token: jwt.sign(
                 { userId: user._id },
-                'RANDOM_TOKEN_SECRET',
+                'b04f899078d8405c8a9dc8531f1a98d2',
                 { expiresIn: '24h' }
               )
             });

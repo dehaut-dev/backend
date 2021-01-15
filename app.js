@@ -2,11 +2,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
+const config = require('./config');
 
 const userRoutes = require('./routes/user');
 const sauceRoutes = require('./routes/sauce');
 
-mongoose.connect('mongodb+srv://user-dehaut:LJbaz59MCP63ZndD@cluster0.8qplx.mongodb.net/<dbname>?retryWrites=true&w=majority', {
+mongoose.connect(`mongodb+srv://${config.mongoCredentials}@cluster0.8qplx.mongodb.net/<dbname>?retryWrites=true&w=majority`, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true
