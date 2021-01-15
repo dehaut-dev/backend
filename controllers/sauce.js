@@ -62,8 +62,6 @@ exports.getOneSauce = (req, res, next) => {
 
 exports.likeSauce = (req, res, next) => {
     Sauce.findOne({_id: req.params.id})
-    .then(sauce => {
-        
-    })
+    .then(sauce => {})
     .catch(error => res.status(400).json({error}))
 }
