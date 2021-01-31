@@ -1,3 +1,4 @@
 module.exports = {
-    mongoCredentials : 'user:password'
+    mongoCredentials : 'user:password',
+    userCredentials : 'userToken'
 }
