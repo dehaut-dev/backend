@@ -25,7 +25,7 @@ app.use((req, res, next) => {                                   // va permetre d
 });
 
 app.use(bodyParser.json());                                     // transforme la requete en Json
-app.use('/images', express.static(path.join(__dirname, 'images')))
+app.use('/images', express.static(path.join(__dirname, 'images')))      // gérer la ressource images
 
 app.use('/api/auth/', userRoutes);          // def de la route a utiliser 
 app.use('/api/sauces', sauceRoutes);
