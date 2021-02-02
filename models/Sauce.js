@@ -1,6 +1,6 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose')                    // model de sauce 
 
-const sauceSchema = mongoose.Schema({
+const sauceSchema = mongoose.Schema({                   // different champ requis pour l'envoi au serveur 
     userId: {type: String, require: true},
     name: {type: String, require: true},
     manufacturer: {type: String, require: true},
@@ -14,4 +14,4 @@ const sauceSchema = mongoose.Schema({
     usersDisliked: {type: String, require: true}
 })
 
-module.exports = mongoose.model('Sauce', sauceSchema)
+module.exports = mongoose.model('Sauce', sauceSchema)           // export du shema de sauce 

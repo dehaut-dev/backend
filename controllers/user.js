@@ -1,14 +1,14 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');         // bibliothèque qui aide à hacher le mots de passe
 const config = require('../config');
 const User = require('../models/User');
-const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');      //permet aux utilisateurs de ne se connecter qu'une seule fois à leur compte
 
 exports.signup = (req, res, next) => {
-    bcrypt.hash(req.body.password, 10)
+    bcrypt.hash(req.body.password, 10)      // va faire 10 tour de hash sur le mdp 
       .then(hash => {
-        const user = new User({
+        const user = new User({             // création de l'utilisateur 
           email: req.body.email,
-          password: hash
+          password: hash                    // ajout de son mots de passe hash
         });
         user.save()
           .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
@@ -20,10 +20,10 @@ exports.signup = (req, res, next) => {
   exports.login = (req, res, next) => {
     User.findOne({ email: req.body.email })
       .then(user => {
-        if (!user) {
+        if (!user) {                                                            // verification du mail 
           return res.status(403).json({ error: 'Utilisateur non trouvé !' });
         }
-        bcrypt.compare(req.body.password, user.password)
+        bcrypt.compare(req.body.password, user.password)                      // verication du mdp 
           .then(valid => {
             if (!valid) {
               return res.status(402).json({ error: 'Mot de passe incorrect !' });
@@ -32,7 +32,7 @@ exports.signup = (req, res, next) => {
               userId: user._id,
               token: jwt.sign(
                 { userId: user._id },
-                config.userCredentials,
+                config.userCredentials,                                     // ajout du token d'authentification 
                 { expiresIn: '24h' }
               )
             });
